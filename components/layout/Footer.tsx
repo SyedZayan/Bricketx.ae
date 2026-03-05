@@ -1,85 +1,126 @@
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="bg-[#111111] text-white pt-20 pb-8 border-t-2 border-[var(--color-gold)]">
-      <div className="max-w-[90rem] mx-auto px-6 md:px-12">
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+    <footer className="w-full bg-[#111111] text-white relative overflow-hidden flex flex-col justify-between">
+      
+      {/* Subtle Geometric Background Lines */}
+      <div className="absolute inset-0 pointer-events-none">
+        <svg className="absolute w-full h-full opacity-10" preserveAspectRatio="none" viewBox="0 0 1440 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 400L1440 0" stroke="white" strokeWidth="1"/>
+          <path d="M1440 400L0 0" stroke="white" strokeWidth="1"/>
+          <path d="M1000 400L1440 200" stroke="white" strokeWidth="1"/>
+          <path d="M440 0L0 200" stroke="white" strokeWidth="1"/>
+        </svg>
+      </div>
+
+      <div className="max-w-[90rem] mx-auto px-6 md:px-12 w-full pt-20 pb-16 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
           
-          {/* Column 1: Brand Info */}
-          <div className="flex flex-col space-y-6">
-            {/* Soft, minimal logo wrapper instead of a harsh white box */}
-            <Link href="/" className="inline-block bg-white/5 border border-white/10 p-4 rounded-lg w-max backdrop-blur-sm">
+          {/* LEFT SIDE: Brand, Bio, Socials, Back to Top */}
+          <div className="lg:col-span-5 flex flex-col items-start pr-0 lg:pr-12">
+            
+            {/* Logo */}
+            <Link href="/" className="mb-8 inline-block">
                <Image 
                 src="/images/BricketX UAE.png" 
                 alt="BricketX UAE Logo" 
-                width={150} 
-                height={50} 
+                width={160} 
+                height={55} 
                 className="object-contain"
               />
             </Link>
-            <p className="text-[var(--color-grey)] text-[14px] leading-relaxed pr-4 font-light">
+            
+            {/* Bio */}
+            <p className="text-[var(--color-grey)] text-[15px] leading-relaxed font-light max-w-md mb-8">
               Bricektx UAE PM LLC-FZ. Premier investment holding and business consultation company delivering tailored strategies for sustainable growth in the UAE.
             </p>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-6 mb-12">
+              <a href="#" className="text-white hover:text-[var(--color-gold)] transition-colors">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+              </a>
+              <a href="#" className="text-white hover:text-[var(--color-gold)] transition-colors">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="#" className="text-white hover:text-[var(--color-gold)] transition-colors">
+                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              <a href="#" className="text-white hover:text-[var(--color-gold)] transition-colors">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+              </a>
+            </div>
+
+            {/* Back To Top Button - Full width on mobile, auto on desktop */}
+            <button 
+              onClick={scrollToTop}
+              className="group flex items-center justify-center lg:justify-start gap-3 border border-white/20 px-6 py-4 lg:py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all duration-300 w-full lg:w-auto"
+            >
+              <svg className="w-4 h-4 transform group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+              Back To Top
+            </button>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div>
-            <h4 className="text-[var(--color-gold)] font-bold mb-6 uppercase tracking-widest text-xs">Company</h4>
-            <ul className="space-y-4 text-[14px] text-[var(--color-grey)] font-light">
-              <li><Link href="/about" className="hover:text-white transition-colors">About BricketX</Link></li>
-              <li><Link href="/leadership" className="hover:text-white transition-colors">Leadership Team</Link></li>
-              <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
-            </ul>
-          </div>
+          {/* RIGHT SIDE: Link Grids - 1 column on mobile, 2 on tablet, 3 on desktop */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 lg:gap-6 pt-4 lg:pt-2 border-t border-white/10 lg:border-t-0">
+            
+            {/* Site Map / Company */}
+            <div>
+              <h4 className="text-white font-medium mb-6 text-[15px]">Site Map</h4>
+              <ul className="space-y-4 text-[14px] text-[var(--color-grey)] font-light">
+                <li><Link href="/about" className="hover:text-[var(--color-gold)] transition-colors">About BricketX</Link></li>
+                <li><Link href="/leadership" className="hover:text-[var(--color-gold)] transition-colors">Leadership Team</Link></li>
+                <li><Link href="/careers" className="hover:text-[var(--color-gold)] transition-colors">Careers</Link></li>
+                <li><Link href="/portfolio" className="hover:text-[var(--color-gold)] transition-colors">Our Portfolio</Link></li>
+              </ul>
+            </div>
 
-          {/* Column 3: Services */}
-          <div>
-            <h4 className="text-[var(--color-gold)] font-bold mb-6 uppercase tracking-widest text-xs">Expertise</h4>
-            <ul className="space-y-4 text-[14px] text-[var(--color-grey)] font-light">
-              <li><Link href="/consultation" className="hover:text-white transition-colors">Business Consultation</Link></li>
-              <li><Link href="/investments" className="hover:text-white transition-colors">Investment Holdings</Link></li>
-              <li><Link href="/market-entry" className="hover:text-white transition-colors">UAE Market Entry</Link></li>
-              <li><Link href="/portfolio" className="hover:text-white transition-colors">Our Portfolio</Link></li>
-            </ul>
-          </div>
+            {/* Expertise */}
+            <div>
+              <h4 className="text-white font-medium mb-6 text-[15px]">Expertise</h4>
+              <ul className="space-y-4 text-[14px] text-[var(--color-grey)] font-light">
+                <li><Link href="/consultation" className="hover:text-[var(--color-gold)] transition-colors">Business Consultation</Link></li>
+                <li><Link href="/investments" className="hover:text-[var(--color-gold)] transition-colors">Investment Holdings</Link></li>
+                <li><Link href="/market-entry" className="hover:text-[var(--color-gold)] transition-colors">UAE Market Entry</Link></li>
+              </ul>
+            </div>
 
-          {/* Column 4: Contact */}
-          <div>
-            <h4 className="text-[var(--color-gold)] font-bold mb-6 uppercase tracking-widest text-xs">Connect</h4>
-            <ul className="space-y-4 text-[14px] text-[var(--color-grey)] font-light">
-              <li className="flex items-start space-x-3">
-                 <span className="text-[var(--color-gold)] mt-0.5">📍</span>
-                 <span>Dubai, United Arab Emirates<br/>(Insert Specific Zone/Address)</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                 <span className="text-[var(--color-gold)]">✉️</span>
-                 <a href="mailto:info@bricketx.ae" className="hover:text-white transition-colors">info@bricketx.ae</a>
-              </li>
-              <li className="flex items-center space-x-3">
-                 <span className="text-[var(--color-gold)]">📞</span>
-                 <a href="tel:+971000000000" className="hover:text-white transition-colors">+971 00 000 0000</a>
-              </li>
-            </ul>
-          </div>
+            {/* Legal & Connect */}
+            <div className="sm:col-span-2 md:col-span-1">
+              <h4 className="text-white font-medium mb-6 text-[15px]">Legal & Connect</h4>
+              <ul className="space-y-4 text-[14px] text-[var(--color-grey)] font-light mb-8">
+                <li><Link href="/privacy" className="hover:text-[var(--color-gold)] transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="hover:text-[var(--color-gold)] transition-colors">Terms of Service</Link></li>
+              </ul>
+              <ul className="space-y-4 text-[14px] text-[var(--color-grey)] font-light">
+                <li><a href="mailto:info@bricketx.ae" className="hover:text-[var(--color-gold)] transition-colors flex items-center gap-3"><svg className="w-4 h-4 text-[var(--color-gold)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> <span className="truncate">info@bricketx.ae</span></a></li>
+                <li><a href="tel:+971000000000" className="hover:text-[var(--color-gold)] transition-colors flex items-center gap-3"><svg className="w-4 h-4 text-[var(--color-gold)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> +971 00 000 0000</a></li>
+              </ul>
+            </div>
 
+          </div>
         </div>
-
-        {/* Bottom Copyright Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-[var(--color-grey)] font-light tracking-wide">
-          <p>&copy; {currentYear} Bricektx UAE PM LLC-FZ. All rights reserved.</p>
-          <div className="flex space-x-8 mt-4 md:mt-0">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-          </div>
-        </div>
-        
       </div>
+
+      {/* Solid Gold Bottom Bar */}
+      <div className="w-full bg-[var(--color-gold)] py-5 relative z-20">
+        <div className="max-w-[90rem] mx-auto px-6 md:px-12 text-center">
+          <p className="text-[#111111] text-[11px] md:text-xs font-medium tracking-wide">
+            Copyright &copy; {currentYear}, Bricektx UAE PM LLC-FZ. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+
     </footer>
   );
 }
