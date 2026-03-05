@@ -1,26 +1,34 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* BricketX UAE Official Palette */
+  --color-gold: #c39967;
+  --color-grey: #a5adb6;
+  --color-white: #ffffff;
+  --color-black: #212121;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Theme Defaults */
+  --background: var(--color-white);
+  --foreground: var(--color-black);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif; /* You can update this to a Google Font like Inter or Playfair Display later */
 }
+
+/* Custom utility classes if you prefer avoiding inline arbitrary values */
+.bg-gold { background-color: var(--color-gold); }
+.text-gold { color: var(--color-gold); }
+.border-gold { border-color: var(--color-gold); }
+
+.bg-grey { background-color: var(--color-grey); }
+.text-grey { color: var(--color-grey); }
+
+.bg-black { background-color: var(--color-black); }
+.text-black { color: var(--color-black); }
