@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GoogleTagManager } from '@next/third-parties/google'; // Import the helper
 import "./globals.css";
 
 import Navbar from "@/components/layout/Navbar"; 
-import Footer from "@/components/layout/Footer"; // <-- Import Footer
+import Footer from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,15 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* This component automatically handles the Head script and the Body noscript */}
+      <GoogleTagManager gtmId="GTM-TJZD3BJQ" />
       <body className={`${inter.className} bg-[var(--background)] text-[var(--foreground)] antialiased flex flex-col min-h-screen`}>
         <Navbar />
         
-        {/* Wrap children in a flex-grow div so the footer always pushes to the bottom even on short pages */}
         <div className="flex-grow">
           {children}
         </div>
         
-        <Footer /> {/* <-- Add Footer here */}
+        <Footer />
       </body>
     </html>
   );
