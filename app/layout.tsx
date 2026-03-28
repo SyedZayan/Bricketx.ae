@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "BricketX UAE | Investment Holding & Business Consultation",
   description: "Premier investment holding and elite business consultation in the UAE.",
+  verification: {
+    google: "thers-8NnD-oFJtp1qaHViRtOX-eSJHbmPYJ0NxHIOI",
+  },
 };
 
 export default function RootLayout({
