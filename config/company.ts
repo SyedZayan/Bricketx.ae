@@ -11,7 +11,8 @@ export const companyInfo = {
     facebook: "https://www.facebook.com/bricketx/",
     instagram: "https://www.instagram.com/bricketx",
     linkedin: "https://www.linkedin.com/company/bricketx-uae",
-    // Leave X (Twitter) as "#" for now until you have a link
-    twitter: "#", 
+    twitter: "https://x.com/bricketxuae", 
+    pinterest: "https://www.pinterest.com/bricketx/",
+    youtube: "", // Placeholder for later
   }
 };
