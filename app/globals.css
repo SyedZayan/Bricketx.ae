@@ -1,3 +1,5 @@
+/* 1. Imports MUST come first */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @tailwind base;
@@ -9,20 +11,40 @@
   --color-gold: #c39967;
   --color-grey: #a5adb6;
   --color-white: #ffffff;
-  --color-black: #212121;
+  --color-black: #0a0a0a;
 
   /* Theme Defaults */
   --background: var(--color-white);
   --foreground: var(--color-black);
+  
+  --font-primary: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif; /* You can update this to a Google Font like Inter or Playfair Display later */
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom utility classes if you prefer avoiding inline arbitrary values */
+/* Custom Typography & Standout Utilities */
+@layer utilities {
+  .text-standout {
+    text-shadow: 0px 4px 30px rgba(0, 0, 0, 0.5), 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .heading-tight {
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .shadow-gold {
+    box-shadow: 0 10px 40px -10px rgba(195, 153, 103, 0.4);
+  }
+}
+
+/* Base Variable Utilities */
 .bg-gold { background-color: var(--color-gold); }
 .text-gold { color: var(--color-gold); }
 .border-gold { border-color: var(--color-gold); }
